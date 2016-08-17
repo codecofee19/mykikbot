@@ -7,6 +7,7 @@ app = Flask(__name__)
 BOT_USERNAME = os.environ['BOT_USERNAME'] 
 BOT_API_KEY= os.environ['BOT_API_KEY']
 kik = KikApi(BOT_USERNAME, BOT_API_KEY)
+kik.set_configuration(Configuration(webhook='https://intense-beyond-98266.herokuapp.com/incoming'))
 @app.route('/incoming', methods=['POST'])
 def incoming():
     if not kik.verify_signature(request.headers.get('X-Kik-Signature'), request.get_data()):
