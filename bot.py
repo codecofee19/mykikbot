@@ -7,9 +7,7 @@ app = Flask(__name__)
 BOT_USERNAME = os.environ['BOT_USERNAME'] 
 BOT_API_KEY= os.environ['BOT_API_KEY']
 kik = KikApi(BOT_USERNAME, BOT_API_KEY)
-WEBHOOK = os.environ['WEBHOOK']
-kik.set_configuration(Configuration(webhook=WEBHOOK))
-@app.route('/', methods=['POST'])
+@app.route('/incoming', methods=['POST'])
 def incoming():
     if not kik.verify_signature(request.headers.get('X-Kik-Signature'), request.get_data()):
         return Response(status=403) 
