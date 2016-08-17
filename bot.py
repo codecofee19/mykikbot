@@ -4,13 +4,11 @@ from kik import KikApi, Configuration
 from kik.messages import messages_from_json, TextMessage
 
 app = Flask(__name__)
-BOT_USERNAME = os.environ.get('BOT_USERNAME') 
-BOT_API_KEY = os.environ.get('BOT_API_KEY')     
-
+BOT_USERNAME = os.environ['BOT_USERNAME'] 
+BOT_API_KEY= os.environ['BOT_API_KEY']
 kik = KikApi(BOT_USERNAME, BOT_API_KEY)
-WEBHOOK = os.environ.get('WEBHOOK')
-kik.set_configuration(Configuration(webhook=WEBHOOK	))
-
+WEBHOOK = os.environ['WEBHOOK']
+kik.set_configuration(Configuration(webhook=WEBHOOK))
 @app.route('/', methods=['POST'])
 def incoming():
     if not kik.verify_signature(request.headers.get('X-Kik-Signature'), request.get_data()):
@@ -30,6 +28,8 @@ def incoming():
 
     return Response(status=200)
 
-
-if __name__ == "__main__":
-    app.run(port=8080, debug=True)
+if __name__ == '__main__':
+    # Bind to PORT if defined, otherwise default to 5000.
+    print('HI') 
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
