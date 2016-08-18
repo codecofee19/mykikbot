@@ -7,8 +7,8 @@ app = Flask(__name__)
 BOT_USERNAME = os.environ['BOT_USERNAME'] 
 BOT_API_KEY= os.environ['BOT_API_KEY']
 kik = KikApi('randydankmeme2042','c2da534c-d599-47f6-b5d9-7f1edaaf83f3')
-kik.set_configuration(Configuration(webhook='https://intense-beyond-98266.herokuapp.com/incoming'))
-@app.route('/incoming', methods=['POST'])
+kik.set_configuration(Configuration(webhook='https://intense-beyond-98266.herokuapp.com/'))
+@app.route('/', methods=['POST'])
 def incoming():
     if not kik.verify_signature(request.headers.get('X-Kik-Signature'), request.get_data()):
         return Response(status=403) 
@@ -30,4 +30,4 @@ def incoming():
 if __name__ == '__main__':
     # Bind to PORT if defined, otherwise default to 5000.
     port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=port, debug=True)
