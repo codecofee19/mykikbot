@@ -21,7 +21,7 @@ def incoming():
                 TextMessage(
                     to=message.from_user,
                     chat_id=message.chat_id,
-                    body='BIG BIG BOOTY'
+                    body=message.body
                 )
             ])
 
