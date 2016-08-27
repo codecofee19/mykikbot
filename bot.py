@@ -2,9 +2,12 @@ from flask import Flask, request, Response
 import os 
 from kik import KikApi, Configuration
 from kik.messages import messages_from_json, TextMessage
-
+KIK_USERNAME = os.environ['KIK_USERNAME'] 
+KIK_API_KEY = os.environ['KIK_API_KEY'] 
+WEBHOOK =  os.environ['WEBHOOK']
 app = Flask(__name__)
-kik.set_configuration(Configuration(webhook='https://intense-beyond-98266.herokuapp.com/'))
+kik = KikApi(KIK_USERNAME, KIK_API_KEY)
+kik.set_configuration(Configuration(webhook=WEBHOOK))
 @app.route('/', methods=['POST'])
 def incoming():
     if not kik.verify_signature(request.headers.get('X-Kik-Signature'), request.get_data()):
