@@ -4,7 +4,6 @@ from kik import KikApi, Configuration
 from kik.messages import messages_from_json, TextMessage
 
 app = Flask(__name__)
-kik = KikApi('randydankmeme2042','c2da534c-d599-47f6-b5d9-7f1edaaf83f3')
 kik.set_configuration(Configuration(webhook='https://intense-beyond-98266.herokuapp.com/'))
 @app.route('/', methods=['POST'])
 def incoming():
