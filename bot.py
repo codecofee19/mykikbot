@@ -1,7 +1,7 @@
-from flask import Flask, request, Response
-import os 
+
 from kik import KikApi, Configuration
 from kik.messages import messages_from_json, TextMessage
+import json 
 #from clarifai.client import ClarifaiApi 
 KIK_USERNAME = os.environ['KIK_USERNAME'] 
 KIK_API_KEY = os.environ['KIK_API_KEY'] 
@@ -17,7 +17,7 @@ def incoming():
         return Response(status=403) 
 
     messages = messages_from_json(request.json['messages'])
-
+    me = json.loads(messages)
     for message in messages:
   #      if isinstance(message, 
         if isinstance(message, TextMessage):
@@ -25,7 +25,7 @@ def incoming():
                 TextMessage(
                     to=message.from_user,
                     chat_id=message.chat_id,
-                    body=message.body
+                    body=type(me)
                 )
             ])
 
