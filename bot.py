@@ -2,14 +2,14 @@ from flask import Flask, request, Response
 import os
 from kik import KikApi, Configuration
 from kik.messages import messages_from_json, TextMessage, PictureMessage
-#from clarifai.client import ClarifaiApi 
+from clarifai.client import ClarifaiApi 
 KIK_USERNAME = os.environ['KIK_USERNAME'] 
 KIK_API_KEY = os.environ['KIK_API_KEY'] 
 WEBHOOK =  os.environ['WEBHOOK']
 app = Flask(__name__)
 kik = KikApi(KIK_USERNAME, KIK_API_KEY)
 kik.set_configuration(Configuration(webhook=WEBHOOK))
-#clarifai_api = ClarifaiApi() 
+clarifai_api = ClarifaiApi() 
 
 @app.route('/', methods=['POST'])
 def incoming():
@@ -18,13 +18,19 @@ def incoming():
 
     messages = messages_from_json(request.json['messages'])
     for message in messages:
-  #      if isinstance(message, 
+       
         if isinstance(message, PictureMessage):
+            result = clarifai_api.tag_image_urls(message.pic_url)
+            one = result["results"]
+            two = one[0]
+            three = two['result']
+            four = three['tag']
+            five = four['classes']
             kik.send_messages([
                 TextMessage(
                     to=message.from_user,
                     chat_id=message.chat_id,
-                    body=message.pic_url 
+                    body=five 
                 )
             ])
 
