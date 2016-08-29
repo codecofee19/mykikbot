@@ -28,14 +28,6 @@ def incoming():
                     body=message.body
                 )
             ])
-        else if message['type'] == 'picture':
-            kik.send_messages([
-                TextMessage(
-                    to=message.from_user,
-                    chat_id=message.chat_id,
-                    body='is that a dick pic? :P' 
-                )
-            ])
 
     return Response(status=200)
 
