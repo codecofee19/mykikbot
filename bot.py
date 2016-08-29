@@ -24,7 +24,7 @@ def incoming():
                 TextMessage(
                     to=message.from_user,
                     chat_id=message.chat_id,
-                    body='sendin me dick pics? ;P'
+                    body=message.pic_url 
                 )
             ])
 
