@@ -28,6 +28,14 @@ def incoming():
                     body=message.body
                 )
             ])
+        elif isinstance(message, PictureMessage):
+            kik.send_messages([
+                TextMessage(
+                    to=message.from_user,
+                    chat_id=message.chat_id,
+                    body='sendin me dick pics? ;P'
+                )
+            ])
 
     return Response(status=200)
 
