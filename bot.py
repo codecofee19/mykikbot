@@ -31,7 +31,13 @@ def incoming():
                     to=message.from_user,
                     chat_id=message.chat_id,
                     body=five[0]
-                )
+                ),
+
+                TextMessage(
+                    to=message.from_user,
+                    chat_id=message.chat_id,
+                    body=five[1]
+                ),
             ])
 
     return Response(status=200)
