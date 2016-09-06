@@ -26,19 +26,15 @@ def incoming():
             three = two['result']
             four = three['tag']
             five = four['classes']
-            kik.send_messages([
-                TextMessage(
-                    to=message.from_user,
-                    chat_id=message.chat_id,
-                    body=five[0]
-                ),
+            for i in five:
+	        kik.send_messages([
+		    TextMessage(
+		    to=message.from_user,
+		    chat_id=message.chat_id,
+		    body=five[i]
+	        ),
 
-                TextMessage(
-                    to=message.from_user,
-                    chat_id=message.chat_id,
-                    body=five[1]
-                ),
-            ])
+	        ])
 
     return Response(status=200)
 
