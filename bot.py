@@ -40,7 +40,7 @@ def incoming():
             four = three['tag']
             five = four['classes']
             if counter == 5:
-                poem = "Marcy had a little " + words[0] + " whose " + words[1] + "was white as " + words[2] + "  This " + words[3] +  " would follow Mary wherever she would go. Mary also like to go " + words[4]+ "ing."
+                poem = "Marcy had a little " + words[0] + " whose " + words[1] + " was white as " + words[2] + "  This " + words[3] +  " would follow Mary wherever she would go. Mary also like to go " + words[4]+ "ing."
 	        kik.send_messages([
 	        TextMessage(
 	        to=message.from_user,
