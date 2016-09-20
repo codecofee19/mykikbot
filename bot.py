@@ -18,7 +18,7 @@ def incoming():
 
     messages = messages_from_json(request.json['messages'])
     for message in messages:
-        if isinstance(message, StartChattingMessage):
+        if isinstance(message, TextMessage):
             kik.send_messages([
             TextMessage(
             to=message.from_user,
