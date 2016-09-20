@@ -23,7 +23,7 @@ def incoming():
             TextMessage(
             to=message.from_user,
             chat_id = message.chat_id,
-            body='Hello Im the Mad Lib Bot! Send me pictures and Ill tell a wacky random story based on the tags of the image'
+            body='Hello Im the Mad Lib Bot! Send me pictures and Ill tell a wacky random story based on the tags of the image. Ill take the first 5 pics :)'
             ),
             ])  
 
