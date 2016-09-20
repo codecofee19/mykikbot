@@ -1,7 +1,7 @@
 from flask import Flask, request, Response
 import os
 from kik import KikApi, Configuration
-from kik.messages import messages_from_json, TextMessage, PictureMessage
+from kik.messages import messages_from_json, TextMessage, PictureMessage, StartChattingMessage
 from clarifai.client import ClarifaiApi 
 KIK_USERNAME = os.environ['KIK_USERNAME'] 
 KIK_API_KEY = os.environ['KIK_API_KEY'] 
