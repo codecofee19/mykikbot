@@ -11,14 +11,14 @@ kik = KikApi(KIK_USERNAME, KIK_API_KEY)
 kik.set_configuration(Configuration(webhook=WEBHOOK))
 clarifai_api = ClarifaiApi() 
 
+words = [] 
+counter = 0 
 
 @app.route('/', methods=['POST'])
 def incoming():
     if not kik.verify_signature(request.headers.get('X-Kik-Signature'), request.get_data()):
         return Response(status=403) 
    
-    words = [] 
-    counter = 0 
     messages = messages_from_json(request.json['messages'])
     for message in messages:
         if isinstance(message, StartChattingMessage):
