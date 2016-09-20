@@ -31,6 +31,8 @@ def incoming():
             ])  
 
         elif isinstance(message, PictureMessage):
+            global counter
+            global words
             result = clarifai_api.tag_image_urls(message.pic_url)
             one = result["results"]
             two = one[0]
