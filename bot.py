@@ -48,7 +48,7 @@ def incoming():
 
 	       ])
             words.append(five[1])
-            counter++
+            counter +=1
             left = 5 - counter
             mes = left + " pictures left to go!"  
 	    kik.send_messages([
