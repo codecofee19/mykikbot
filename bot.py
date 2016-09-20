@@ -11,6 +11,9 @@ kik = KikApi(KIK_USERNAME, KIK_API_KEY)
 kik.set_configuration(Configuration(webhook=WEBHOOK))
 clarifai_api = ClarifaiApi() 
 
+counter = 0 
+words = [] 
+
 @app.route('/', methods=['POST'])
 def incoming():
     if not kik.verify_signature(request.headers.get('X-Kik-Signature'), request.get_data()):
@@ -34,15 +37,28 @@ def incoming():
             three = two['result']
             four = three['tag']
             five = four['classes']
+            if counter == 5:
+                poem = "Mary had a little" + words[0] + " whose" + words[1] + "was white as " + words[2] + "  This " + words[3] +  " would follow Mary wherever she would go. Mary also like to go " + words[4]+ "ing."
 	    kik.send_messages([
 	    TextMessage(
 	    to=message.from_user,
 	    chat_id=message.chat_id,
-	    body=five[1]
+	    body=poem 
 	    ),
 
 	   ])
+            words.append(five[1])
+            counter++
+            left = 5 - counter
+            mes = left + " pictures left to go!"  
+	    kik.send_messages([
+	    TextMessage(
+	    to=message.from_user,
+	    chat_id=message.chat_id,
+	    body=mes 
+	    ),
 
+	   ])
     return Response(status=200)
 
 if __name__ == '__main__':
