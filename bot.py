@@ -50,7 +50,7 @@ def incoming():
             words.append(five[1])
             counter +=1
             left = 5 - counter
-            mes = left + " pictures left to go!"  
+            mes = str(left) + " pictures left to go!"  
 	    kik.send_messages([
 	    TextMessage(
 	    to=message.from_user,
