@@ -18,7 +18,7 @@ def incoming():
 
     messages = messages_from_json(request.json['messages'])
     for message in messages:
-        if isinstance(message, TextMessage):
+        if isinstance(message, StartChattingMessage):
             kik.send_messages([
             TextMessage(
             to=message.from_user,
@@ -27,7 +27,7 @@ def incoming():
             ),
             ])  
 
-        if isinstance(message, PictureMessage):
+        elif isinstance(message, PictureMessage):
             result = clarifai_api.tag_image_urls(message.pic_url)
             one = result["results"]
             two = one[0]
