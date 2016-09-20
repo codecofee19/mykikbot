@@ -18,12 +18,12 @@ def incoming():
 
     messages = messages_from_json(request.json['messages'])
     for message in messages:
-        if isinstance(message, TextMessage):
+        if isinstance(message, StartChattingMessage):
             kik.send_messages([
             TextMessage(
             to=message.from_user,
             chat_id = message.chat_id,
-            body='fi'
+            body="Hello Im the Mad Lib Bot! Send me pictures and Ill tell a wacky random story based on the tags of the images"
             ),
             ])  
 
